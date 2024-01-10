@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  java_app:
+    container_name: metainfo_app
+    image: metainfo-app:1.0.0
+    build: .
+    ports:
+     - 80:80
+    environment:
+     - mongodb://java_db:27017/metadata
+    depends_on:
+     - java_db
+  java_db:
+    container_name: java_db
+    image: mongo:latest
+    ports:
+     - 27017:27017
